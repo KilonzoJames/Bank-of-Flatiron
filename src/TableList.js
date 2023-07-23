@@ -20,7 +20,21 @@ useEffect(()=>{
 const handleDelete = (dataObject) => {
     const updatedArray = array.filter((item) => item !== dataObject);
     setArray(updatedArray);
+    deleteObject(dataObject)
   };
+
+const deleteObject=(dataObject)=>{
+  const deletedData={
+    method: "DELETE",
+    headers:{
+      "Content-Type":"application/json",
+    Accept: "application/json"
+  }};
+  fetch(`http://localhost:3000/transactions/${dataObject.id}`,deletedData)
+  .then(r=>r.json())
+  .then(r=>console.log("Deleted from Database")
+  )
+}
   
 const rowdata=array.map((dataObject,index)=>{
   return(
