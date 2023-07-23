@@ -1,16 +1,13 @@
 import React, { useState } from "react";
-import TableList from "./TableList";
 import Button from "./Button";
-import Search from "./Search";
 
-function Form(){
+function Form({array, updateArray}){
     const [dataObject, setdataObject ]=useState({
         date:"",
         description:"",
         category:"",
         amount:""
     })
-    const [array, setArray]=useState([])
 
     function handleChange(event){
         setdataObject(
@@ -25,7 +22,7 @@ function Form(){
         event.preventDefault()
       const newArray= [...array,
             dataObject]
-        setArray(newArray)
+        updateArray(newArray)
         setdataObject({
             date:"",
             description:"",
@@ -55,55 +52,53 @@ function Form(){
        .then(response => response.json())
        .then(response => {
         const jsonArray=[...array, response]
-        setArray(jsonArray)
+        updateArray(jsonArray)
     })
     }
     
     return(
-            <>
-                <Search array={array} setArray={setArray}/>
-                <div className="p-3 text-center">
-                    <form className="fs-4 fw-medium" onSubmit={handleSubmit}>
+    <>
+        <div className="p-3 text-center">
+            <form className="fs-4 fw-medium" onSubmit={handleSubmit}>
 
-                        <label >Date</label>
-                        <input 
-                        type="date" 
-                        name="date" 
-                        value={dataObject.date} 
-                        onChange={handleChange}
-                        />
+                <label >Date</label>
+                <input 
+                type="date" 
+                name="date" 
+                value={dataObject.date} 
+                onChange={handleChange}
+                />
 
-                        <input 
-                        type="text"  
-                        placeholder="Description" 
-                        name="description" 
-                        value={dataObject.description} 
-                        onChange={handleChange}
-                        />
+                <input 
+                type="text"  
+                placeholder="Description" 
+                name="description" 
+                value={dataObject.description} 
+                onChange={handleChange}
+                />
 
-                        <input 
-                        type="text"  
-                        placeholder="Category" 
-                        name="category" 
-                        value={dataObject.category} 
-                        onChange={handleChange}
-                        />
+                <input 
+                type="text"  
+                placeholder="Category" 
+                name="category" 
+                value={dataObject.category} 
+                onChange={handleChange}
+                />
 
-                        <input 
-                        type="number"  
-                        placeholder="Amount" 
-                        name="amount" 
-                        value={dataObject.amount} 
-                        onChange={handleChange}
-                        />
+                <input 
+                type="number"  
+                placeholder="Amount" 
+                name="amount" 
+                value={dataObject.amount} 
+                onChange={handleChange}
+                />
 
-                        <Button type="submit">
-                            Add Transaction
-                        </Button>
-                    </form>
-                </div>
-                <TableList array={array} setArray={setArray}/>
-            </>
+                <Button type="submit">
+                    Add Transaction
+                </Button>
+            </form>
+        </div>
+    </>
     );
 }
 export default Form
