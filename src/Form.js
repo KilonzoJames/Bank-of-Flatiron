@@ -6,7 +6,7 @@ function Form({array, updateArray}){
         date:"",
         description:"",
         category:"",
-        amount:""
+        amount:0
     })
 
     function handleChange(event){
@@ -27,7 +27,7 @@ function Form({array, updateArray}){
             date:"",
             description:"",
             category:"",
-            amount:""
+            amount:0
         },
         addNewTransaction(dataObject)
         )

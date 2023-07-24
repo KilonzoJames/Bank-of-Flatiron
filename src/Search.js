@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
 
-function Search({array, setArray,setFilteredArray}){
+function Search({array, setArray}){
 const [hint, setHint] = useState("");
 
 function filterArray(value) {
@@ -23,15 +23,13 @@ function handleSearch(e){
     const inputValue = e.target.value;
     setHint(inputValue);
     const filteredArray = filterArray();
-    // setFilteredArray(filteredArray);
     setArray(filteredArray);
-
 }
     return(
             <input 
+            type="search" 
             value={hint}
             onChange={handleSearch} 
-            type="search" 
             className="form-control" 
             id="exampleFormControlInput1" 
             placeholder="Search your recent transactions"
