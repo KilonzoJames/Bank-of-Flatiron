@@ -9,11 +9,11 @@ useEffect(()=>{
   .then(r=>r.json())
   .then(jsondata=>{
   console.log(jsondata);
-  const newJson = jsondata.map((item) => {
-    const { id, ...newItem } = item; 
-    return newItem; 
-  });
-    setArray(newJson)
+  // const newJson = jsondata.map((item) => {
+  //   const { id, ...newItem } = item; 
+  //   return newItem; 
+  // });
+    setArray(jsondata)
   })
 }, [setArray])
 
@@ -22,22 +22,22 @@ const handleDelete = (dataObject) => {
     deleteObject(dataObject)
     setArray(updatedArray);
   };
-
 const deleteObject=(dataObject)=>{
-  const url=`http://localhost:3000/transactions/${dataObject.id}`
+  const indexToDelete = dataObject.id;
+  console.log(indexToDelete);
+  const url=`http://localhost:3000/transactions/${indexToDelete}`
   const deletedData={
     method: "DELETE",
     };
-  fetch(url,deletedData)
-  .then(r=>r.json())
-  .then(r=>{console.log("Deleted from Database");
-  console.log(r.status)})
-  .catch((error) => {
-    console.error("Error occurred while deleting:", error);
-  });
-}
+  fetch(url,deletedData).then(response=>console.log(response))}
+    // if(response.ok){
+    //   const idx=array.indexOf(dataObject);
+    //   array.splice(idx,1)
+    //   setArray(array)
+    // }
+
   
-const rowdata=array.map((dataObject,index)=>{
+const rowdata=((dataObject)=>{
   return(
     <>
         <tr key={dataObject.id}>
@@ -63,7 +63,7 @@ const rowdata=array.map((dataObject,index)=>{
                 <th scope="col">Amount</th>
                 </tr>
             </thead>
-            <tbody>{rowdata}</tbody>
+            <tbody>{array.map(rowdata)}</tbody>
         </table>
         </>
     )
