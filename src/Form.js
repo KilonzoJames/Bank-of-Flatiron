@@ -36,6 +36,7 @@ function Form({array, updateArray}){
 
 
     const addNewTransaction=(dataObject)=>{
+        const url="http://localhost:3000/transactions";
         const postData={
         method: "POST",
         headers: {
@@ -48,7 +49,7 @@ function Form({array, updateArray}){
             "category": dataObject.category,
             "amount": dataObject.amount
         })}
-       return fetch("http://localhost:3000/transactions", postData)
+       return fetch(url, postData)
        .then(response => response.json())
        .then(response => {
         const jsonArray=[...array, response]
@@ -92,6 +93,8 @@ function Form({array, updateArray}){
                 value={dataObject.amount} 
                 onChange={handleChange}
                 />
+                <br />
+                <br />
 
                 <Button type="submit">
                     Add Transaction
