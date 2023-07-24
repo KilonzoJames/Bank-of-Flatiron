@@ -3,9 +3,9 @@ import Button from "./Button";
 
 
 function TableList({array, setArray}){
-
 useEffect(()=>{
-  fetch("http://localhost:3000/transactions")
+  const url="http://localhost:3000/transactions";
+  fetch(url)
   .then(r=>r.json())
   .then(jsondata=>{
   console.log(jsondata);
@@ -19,21 +19,22 @@ useEffect(()=>{
 
 const handleDelete = (dataObject) => {
     const updatedArray = array.filter((item) => item !== dataObject);
-    setArray(updatedArray);
     deleteObject(dataObject)
+    setArray(updatedArray);
   };
 
 const deleteObject=(dataObject)=>{
+  const url=`http://localhost:3000/transactions/${dataObject.id}`
   const deletedData={
     method: "DELETE",
-    headers:{
-      "Content-Type":"application/json",
-    Accept: "application/json"
-  }};
-  fetch(`http://localhost:3000/transactions/${dataObject.id}`,deletedData)
+    };
+  fetch(url,deletedData)
   .then(r=>r.json())
-  .then(r=>console.log("Deleted from Database")
-  )
+  .then(r=>{console.log("Deleted from Database");
+  console.log(r.status)})
+  .catch((error) => {
+    console.error("Error occurred while deleting:", error);
+  });
 }
   
 const rowdata=array.map((dataObject,index)=>{
