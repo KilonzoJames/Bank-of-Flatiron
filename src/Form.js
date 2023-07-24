@@ -94,7 +94,6 @@ function Form({array, updateArray}){
                 onChange={handleChange}
                 />
                 <br />
-                <br />
 
                 <Button type="submit">
                     Add Transaction
