@@ -1,16 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 
 
-function Search({array, setArray}){
-const [originalArray, setOriginalArray] = useState([]);
-
-useEffect(() => {
-    setOriginalArray([...array]);
-  }, [array]);
+function Search({array, setArray,setFilteredArray}){
+const [hint, setHint] = useState("");
 
 function filterArray(value) {
     return array.filter(dataObject=>{
-    const lowerCaseValue = value.toLowerCase();
+    const lowerCaseValue = hint.toLowerCase();
     const lowerCaseDescription = dataObject.description.toLowerCase();
     const lowerCaseCategory = dataObject.category.toLowerCase();
     const amountString = String(dataObject.amount);
@@ -23,24 +19,19 @@ function filterArray(value) {
 });
 }
 
-function handleSearch(event){
-    const value=event.target.value;
-    const searchArray = filterArray(value);
-    console.log(array);
-    console.log(searchArray);
+function handleSearch(e){
+    const inputValue = e.target.value;
+    setHint(inputValue);
+    const filteredArray = filterArray();
+    // setFilteredArray(filteredArray);
+    setArray(filteredArray);
 
-    if(searchArray.length>0){
-    setArray(searchArray)
-    }
-    else{
-    setArray(originalArray)
-    }
 }
     return(
-
             <input 
+            value={hint}
             onChange={handleSearch} 
-            type="text" 
+            type="search" 
             className="form-control" 
             id="exampleFormControlInput1" 
             placeholder="Search your recent transactions"
