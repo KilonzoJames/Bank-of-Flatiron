@@ -8,19 +8,19 @@ import "./App.css";
 
 function App() {
   const [array, setArray]=useState([]);
+  const [hint, setHint] = useState("");
 
   const updateArray = (newArray) => {
     setArray(newArray);
   };
     // Callback function to update the state from the Form component
 
-
   return (
     <div className="App">
      <Header/>
      <Search 
-     array={array} 
-     setArray={setArray}
+     hint={hint}
+     setHint={setHint}
      />
      <Form 
      array={array} 
@@ -29,6 +29,7 @@ function App() {
      <TableList 
      array={array} 
      setArray={setArray}
+     hint={hint}
      />
     </div>
   );

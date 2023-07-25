@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import Button from "./Button";
 
 
-function TableList({array, setArray}){
+function TableList({array, setArray, hint}){
 useEffect(()=>{
   const url="http://localhost:3000/transactions";
   fetch(url)
@@ -18,7 +18,7 @@ useEffect(()=>{
 }, [setArray])
 
 const handleDelete = (dataObject) => {
-    const updatedArray = array.filter((item) => item !== dataObject);
+    const updatedArray = array.filter((arrayItem) => arrayItem !== dataObject);
     deleteObject(dataObject)
     setArray(updatedArray);
   };
@@ -36,7 +36,19 @@ const deleteObject=(dataObject)=>{
     //   setArray(array)
     // }
 
-  
+const filteredArray=array.filter(dataObject=>{
+      const lowerCaseValue = hint.toLowerCase();
+      const lowerCaseDescription = dataObject.description.toLowerCase();
+      const lowerCaseCategory = dataObject.category.toLowerCase();
+      const amountString = String(dataObject.amount);
+      return(
+      dataObject.date.includes(lowerCaseValue)||
+      lowerCaseDescription.includes(lowerCaseValue)||
+      lowerCaseCategory.includes(lowerCaseValue)||
+      amountString.includes(lowerCaseValue)    
+        );
+      });
+      
 const rowdata=((dataObject)=>{
   return(
     <>
@@ -53,7 +65,6 @@ const rowdata=((dataObject)=>{
   )
 })
     return(
-        <>
         <table className="table">
             <thead>
                 <tr>
@@ -63,9 +74,8 @@ const rowdata=((dataObject)=>{
                 <th scope="col">Amount</th>
                 </tr>
             </thead>
-            <tbody>{array.map(rowdata)}</tbody>
+            <tbody>{filteredArray.map(rowdata)}</tbody>
         </table>
-        </>
     )
 }
 export default TableList

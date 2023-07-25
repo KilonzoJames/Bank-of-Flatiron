@@ -1,29 +1,11 @@
-import React, {useState} from "react";
+import React from "react";
 
 
-function Search({array, setArray}){
-const [hint, setHint] = useState("");
-
-function filterArray(value) {
-    return array.filter(dataObject=>{
-    const lowerCaseValue = hint.toLowerCase();
-    const lowerCaseDescription = dataObject.description.toLowerCase();
-    const lowerCaseCategory = dataObject.category.toLowerCase();
-    const amountString = String(dataObject.amount);
-    return(
-    dataObject.date.includes(lowerCaseValue)||
-    lowerCaseDescription.includes(lowerCaseValue)||
-    lowerCaseCategory.includes(lowerCaseValue)||
-    amountString.includes(lowerCaseValue)    
-    );
-});
-}
+function Search({hint, setHint}){
 
 function handleSearch(e){
     const inputValue = e.target.value;
     setHint(inputValue);
-    const filteredArray = filterArray();
-    setArray(filteredArray);
 }
     return(
             <input 
