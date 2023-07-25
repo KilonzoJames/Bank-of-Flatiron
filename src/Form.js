@@ -6,7 +6,7 @@ function Form({array, updateArray}){
         date:"",
         description:"",
         category:"",
-        amount:0
+        amount:""
     })
 
     function handleChange(event){
@@ -27,7 +27,7 @@ function Form({array, updateArray}){
             date:"",
             description:"",
             category:"",
-            amount:0
+            amount:""
         },
         addNewTransaction(dataObject)
         )
@@ -62,7 +62,6 @@ function Form({array, updateArray}){
         <div className="p-3 text-center">
             <form className="fs-4 fw-medium" onSubmit={handleSubmit}>
 
-                <label >Date</label>
                 <input 
                 type="date" 
                 name="date" 
@@ -94,7 +93,7 @@ function Form({array, updateArray}){
                 onChange={handleChange}
                 />
                 <br />
-
+                
                 <Button type="submit">
                     Add Transaction
                 </Button>

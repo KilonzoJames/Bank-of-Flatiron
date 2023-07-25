@@ -68,10 +68,55 @@ const rowdata=((dataObject)=>{
         <table className="table">
             <thead>
                 <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Description</th>
-                <th scope="col">Category</th>
-                <th scope="col">Amount</th>
+
+                <th scope="col">Date
+                <div class="dropdown">
+                  <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   Sort by
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><button class="dropdown-item">Date(Recent)</button></li>
+                    <li><button class="dropdown-item">Date(Oldest)</button></li>
+                  </ul>
+                </div>
+                </th>
+
+                <th scope="col">Description
+                <div class="dropdown">
+                  <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   Sort by
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><button class="dropdown-item">Description(A-Z)</button></li>
+                    <li><button class="dropdown-item">Description(Z-A)</button></li>
+                  </ul>
+                </div>
+                </th>
+
+              <th scope="col">Category
+              <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                 Sort by
+                </button>
+                <ul class="dropdown-menu">
+                  <li><button class="dropdown-item">Category(A-Z)</button></li>
+                  <li><button class="dropdown-item">Category(Z-A)</button></li>
+                </ul>
+              </div>
+              </th>
+
+              <th scope="col">Amount
+              <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                 Sort by
+                </button>
+                <ul class="dropdown-menu">
+                  <li><button class="dropdown-item">Price(less than 10)</button></li>
+                  <li><button class="dropdown-item">Price(more than 10)</button></li>
+                </ul>
+              </div>   
+              </th>
+
                 </tr>
             </thead>
             <tbody>{filteredArray.map(rowdata)}</tbody>
