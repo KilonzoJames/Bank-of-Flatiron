@@ -32,8 +32,6 @@ function Form({array, updateArray}){
         addNewTransaction(dataObject)
         )
     }
-    console.log(array)
-
 
     const addNewTransaction=(dataObject)=>{
         const url="http://localhost:3000/transactions";
@@ -44,10 +42,10 @@ function Form({array, updateArray}){
         Accept: "application/json"
         },
         body: JSON.stringify({
-            "date": dataObject.date,
-            "description": dataObject.description,
-            "category": dataObject.category,
-            "amount": dataObject.amount
+            date: dataObject.date,
+            description: dataObject.description,
+            category: dataObject.category,
+            amount: dataObject.amount
         })}
        return fetch(url, postData)
        .then(response => response.json())
@@ -67,6 +65,7 @@ function Form({array, updateArray}){
                 name="date" 
                 value={dataObject.date} 
                 onChange={handleChange}
+                required
                 />
 
                 <input 
@@ -75,6 +74,7 @@ function Form({array, updateArray}){
                 name="description" 
                 value={dataObject.description} 
                 onChange={handleChange}
+                required
                 />
 
                 <input 
@@ -83,6 +83,7 @@ function Form({array, updateArray}){
                 name="category" 
                 value={dataObject.category} 
                 onChange={handleChange}
+                required
                 />
 
                 <input 
@@ -91,6 +92,7 @@ function Form({array, updateArray}){
                 name="amount" 
                 value={dataObject.amount} 
                 onChange={handleChange}
+                required
                 />
                 <br />
                 
