@@ -1,8 +1,34 @@
-import React, {useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import Button from "./Button";
 
 
 function TableList({array, setArray, hint}){
+const [datestate, setDate]=useState(true)
+const [descriptionstate, setDescription]=useState(true)
+const [categorystate, setCategory]=useState(true)
+const [amountstate, setAmount]=useState(true)
+
+function handleDate(){
+  setDate(!datestate)
+  array.sort((a,b)=>a["date"]-b["date"]?1:-1 )
+}
+function handleDescription(){
+  setDescription(!descriptionstate);
+  const cc=array.sort((a,b)=>a["description"]<b["description"]?-1:1)
+  console.log(cc);
+}
+function handleCategory(){
+  setCategory(!categorystate);
+  array.sort((a,b)=>a["category"]>b["category"]?1:-1)
+}
+function handlePrice(){
+  setAmount(!amountstate);
+  // array.sort((a,b)=>a["amount"]-b["amount"]?1:-1 )
+}
+
+
+
+
 useEffect(()=>{
   const url="http://localhost:3000/transactions";
   fetch(url)
@@ -67,57 +93,39 @@ const rowdata=((dataObject)=>{
     return(
         <table className="table">
             <thead>
-                <tr>
+              <tr>
+              <th scope="col">Date
+              <button 
+              onClick={handleDate}
+              class="btn btn-primary dropdown-toggle" type="button" >
+              {datestate? "Date(Oldest)": "Date(Recent)"}
+              </button>
+              </th>
 
-                <th scope="col">Date
-                <div class="dropdown">
-                  <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                   Sort by
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><button class="dropdown-item">Date(Recent)</button></li>
-                    <li><button class="dropdown-item">Date(Oldest)</button></li>
-                  </ul>
-                </div>
-                </th>
-
-                <th scope="col">Description
-                <div class="dropdown">
-                  <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                   Sort by
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><button class="dropdown-item">Description(A-Z)</button></li>
-                    <li><button class="dropdown-item">Description(Z-A)</button></li>
-                  </ul>
-                </div>
-                </th>
+              <th scope="col">Description
+              <button 
+              onClick={handleDescription}
+              class="btn btn-primary dropdown-toggle" type="button" >
+              {descriptionstate? "Description(Z-A)" : "Description(A-Z)"}
+              </button>
+              </th>
 
               <th scope="col">Category
-              <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                 Sort by
-                </button>
-                <ul class="dropdown-menu">
-                  <li><button class="dropdown-item">Category(A-Z)</button></li>
-                  <li><button class="dropdown-item">Category(Z-A)</button></li>
-                </ul>
-              </div>
+              <button
+              onClick={handleCategory} 
+              class="btn btn-primary dropdown-toggle" type="button">
+              {categorystate? "Category(Z-A)" : "Category(A-Z)"}            
+              </button>
               </th>
 
               <th scope="col">Amount
-              <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                 Sort by
-                </button>
-                <ul class="dropdown-menu">
-                  <li><button class="dropdown-item">Price(less than 10)</button></li>
-                  <li><button class="dropdown-item">Price(more than 10)</button></li>
-                </ul>
-              </div>   
+              <button 
+              onClick={handlePrice}
+              class="btn btn-primary dropdown-toggle" type="button">
+              {amountstate? "Highest Price" : "Lowest Price"}
+              </button>
               </th>
-
-                </tr>
+              </tr>
             </thead>
             <tbody>{filteredArray.map(rowdata)}</tbody>
         </table>
