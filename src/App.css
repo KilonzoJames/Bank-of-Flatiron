@@ -4,7 +4,10 @@ input{
     border-radius: 5px;
     width:11cm
 }
-table{
+thead{
     font-family: 'Times New Roman', Times, serif;
     font-size: xx-large;
+}
+tbody{
+    font-family: 'Times New Roman', Times, serif;    
 }

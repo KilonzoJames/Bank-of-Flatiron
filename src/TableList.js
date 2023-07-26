@@ -10,20 +10,35 @@ const [amountstate, setAmount]=useState(true)
 
 function handleDate(){
   setDate(!datestate)
-  array.sort((a,b)=>a["date"]-b["date"]?1:-1 )
+  if (datestate === true) {
+    array.sort((a, b) => a["date"]-b["date"]?1:-1);
+  } else {
+    array.sort((a, b) => b.date-a.date?1:-1);
+  }
 }
 function handleDescription(){
   setDescription(!descriptionstate);
-  const cc=array.sort((a,b)=>a["description"]<b["description"]?-1:1)
-  console.log(cc);
+  if (descriptionstate === true) {
+    array.sort((a, b) => a["description"]>b["description"]?1:-1);
+  } else {
+    array.sort((a, b) => b.description>a.description?1:-1);
+  }
 }
 function handleCategory(){
   setCategory(!categorystate);
-  array.sort((a,b)=>a["category"]>b["category"]?1:-1)
+  if (categorystate === true) {
+    array.sort((a, b) => a["category"]>b["category"]?1:-1);
+  } else {
+    array.sort((a, b) => b.category>a.category?1:-1);
+  }
 }
 function handlePrice(){
   setAmount(!amountstate);
-  // array.sort((a,b)=>a["amount"]-b["amount"]?1:-1 )
+  if (amountstate === true) {
+    array.sort((a, b) => a.amount - b.amount);
+  } else {
+    array.sort((a, b) => b.amount - a.amount);
+  }
 }
 
 
@@ -95,6 +110,7 @@ const rowdata=((dataObject)=>{
             <thead>
               <tr>
               <th scope="col">Date
+              <br/>
               <button 
               onClick={handleDate}
               class="btn btn-primary dropdown-toggle" type="button" >
@@ -103,6 +119,7 @@ const rowdata=((dataObject)=>{
               </th>
 
               <th scope="col">Description
+              <br/>
               <button 
               onClick={handleDescription}
               class="btn btn-primary dropdown-toggle" type="button" >
@@ -111,6 +128,7 @@ const rowdata=((dataObject)=>{
               </th>
 
               <th scope="col">Category
+              <br/>
               <button
               onClick={handleCategory} 
               class="btn btn-primary dropdown-toggle" type="button">
@@ -119,6 +137,7 @@ const rowdata=((dataObject)=>{
               </th>
 
               <th scope="col">Amount
+              <br/>
               <button 
               onClick={handlePrice}
               class="btn btn-primary dropdown-toggle" type="button">
