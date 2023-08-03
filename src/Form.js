@@ -28,9 +28,9 @@ function Form({array, updateArray}){
             description:"",
             category:"",
             amount:""
-        },
+        })
         addNewTransaction(dataObject)
-        )
+     
     }
 
     const addNewTransaction=(dataObject)=>{
@@ -46,13 +46,10 @@ function Form({array, updateArray}){
             description: dataObject.description,
             category: dataObject.category,
             amount: dataObject.amount
-        })}
+        })};
        return fetch(url, postData)
        .then(response => response.json())
-       .then(response => {
-        const jsonArray=[...array, response]
-        updateArray(jsonArray)
-    })
+       .then(response => console.log(response))
     }
     
     return(
@@ -95,7 +92,7 @@ function Form({array, updateArray}){
                 required
                 />
                 <br />
-                
+
                 <Button type="submit">
                     Add Transaction
                 </Button>

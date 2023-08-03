@@ -113,7 +113,7 @@ const rowdata=((dataObject)=>{
               <br/>
               <button 
               onClick={handleDate}
-              class="btn btn-primary dropdown-toggle" type="button" >
+              className="btn btn-primary dropdown-toggle" type="button" >
               {datestate? "Date(Oldest)": "Date(Recent)"}
               </button>
               </th>
@@ -122,7 +122,7 @@ const rowdata=((dataObject)=>{
               <br/>
               <button 
               onClick={handleDescription}
-              class="btn btn-primary dropdown-toggle" type="button" >
+              className="btn btn-primary dropdown-toggle" type="button" >
               {descriptionstate? "Description(Z-A)" : "Description(A-Z)"}
               </button>
               </th>
@@ -131,7 +131,7 @@ const rowdata=((dataObject)=>{
               <br/>
               <button
               onClick={handleCategory} 
-              class="btn btn-primary dropdown-toggle" type="button">
+              className="btn btn-primary dropdown-toggle" type="button">
               {categorystate? "Category(Z-A)" : "Category(A-Z)"}            
               </button>
               </th>
@@ -140,7 +140,7 @@ const rowdata=((dataObject)=>{
               <br/>
               <button 
               onClick={handlePrice}
-              class="btn btn-primary dropdown-toggle" type="button">
+              className="btn btn-primary dropdown-toggle" type="button">
               {amountstate? "Highest Price" : "Lowest Price"}
               </button>
               </th>
