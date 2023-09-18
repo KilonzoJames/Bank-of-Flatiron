@@ -45,7 +45,7 @@ function handlePrice(){
 
 
 useEffect(()=>{
-  const url="http://localhost:3000/transactions";
+  const url="https://my-json-server.typicode.com/KilonzoJames/Bank-of-Flatiron/transactions";
   fetch(url)
   .then(r=>r.json())
   .then(jsondata=>{
@@ -66,7 +66,7 @@ const handleDelete = (dataObject) => {
 const deleteObject=(dataObject)=>{
   const indexToDelete = dataObject.id;
   console.log(indexToDelete);
-  const url=`http://localhost:3000/transactions/${indexToDelete}`
+  const url=`https://my-json-server.typicode.com/KilonzoJames/Bank-of-Flatiron/transactions/${indexToDelete}`
   const deletedData={
     method: "DELETE",
     };

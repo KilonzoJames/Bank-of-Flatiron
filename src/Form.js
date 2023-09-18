@@ -34,7 +34,7 @@ function Form({array, updateArray}){
     }
 
     const addNewTransaction=(dataObject)=>{
-        const url="http://localhost:3000/transactions";
+        const url="https://my-json-server.typicode.com/KilonzoJames/Bank-of-Flatiron/transactions";
         const postData={
         method: "POST",
         headers: {
